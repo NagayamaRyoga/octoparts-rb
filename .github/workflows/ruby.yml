@@ -12,6 +12,11 @@ jobs:
     strategy:
       matrix:
         ruby-version: [ '2.6', '2.7' ]
+        include:
+          - ruby-version: '2.6'
+            ruby-opt: ''
+          - ruby-version: '2.7'
+            ruby-opt: '-W:deprecated'
 
     steps:
     - uses: actions/checkout@v2
@@ -21,4 +26,4 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
-      run: bundle exec rake
+      run: RUBY_OPT=${{ matrix.ruby-opt }} bundle exec rake
