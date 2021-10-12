@@ -58,7 +58,8 @@ module Octoparts
     private
 
     def post_cache_api(path)
-      escaped_path = URI.escape("#{CACHE_API_ENDPOINT_PATH}#{path}")
+      encoded_path_segments = path.split('/').map { |seg| URI.encode_www_form_component(seg) }.join('/')
+      escaped_path = "#{CACHE_API_ENDPOINT_PATH}#{encoded_path_segments}"
       resp = post(escaped_path)
       Response.new(
         resp.body,
