@@ -8,8 +8,10 @@ module Octoparts
         @camelcase = camelcase
       end
 
-      def call(_represented, args)
-        args.fetch(:user_options, {})[:camelize] ? @camelcase : @camelcase.underscore
+      def call(represented)
+        options = represented.fetch(:options, {})
+        user_options = options.fetch(:user_options, {})
+        user_options[:camelize] ? @camelcase : @camelcase.underscore
       end
     end
 
