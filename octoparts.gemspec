@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday", "< 2.0"
   spec.add_dependency "multi_json"
 
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 13.0.6"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "test-unit", "~> 3.0"
   spec.add_development_dependency "webmock"
