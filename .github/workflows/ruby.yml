@@ -11,16 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: [ '2.6', '2.7', '3.0', '3.1' ]
-        include:
-          - ruby-version: '2.6'
-            ruby-opt: ''
-          - ruby-version: '2.7'
-            ruby-opt: '-W:deprecated'
-          - ruby-version: '3.0'
-            ruby-opt: '-W:deprecated'
-          - ruby-version: '3.1'
-            ruby-opt: '-W:deprecated'
+        ruby-version: [ '2.6', '2.7', '3.0', '3.1', '3.2' ]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,4 +21,4 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
-      run: RUBY_OPT=${{ matrix.ruby-opt }} bundle exec rake
+      run: bundle exec rake
